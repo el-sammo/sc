@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="nav-away-modal-title">
+		<strong>{{entryName}}</strong>
+  </h3>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="row">
+					<div class="col-md-12">
+						<span class="entriesHeader">
+							Selections for Week {{selectionsWeek}}
+						</span>
+					</div>
+				</div>
+				<div 
+					class="row"
+					ng-repeat="selection in combined track by $index"
+				>
+					<div class="col-md-12">
+						<span 
+							class="entriesData"
+							ng-if="selection.odds > 0"
+						>
+							{{selection.team}} + {{selection.odds}}
+						</span>
+						<span 
+							class="entriesData"
+							ng-if="selection.odds < 0"
+						>
+							{{selection.team}} {{selection.odds}}
+						</span>
+					</div>
+				</div>
+
+<div class="modal-footer" ng-show="!currentlyAvailable">
+  <button type="button" class="btn btn-primary pull-left" ng-click="$close('discard')">
+    <i class="fa fa-reply"></i> &nbsp; Go Back
+  </button>
+</div>
