@@ -27,7 +27,7 @@ console.log('week: '+week);
 console.log('year: '+year);
 console.log(' ');
 
-			WeekOdds.findOne({
+			weekOdds.findOne({
 				team: team, 
 				week: week, 
 				year: year

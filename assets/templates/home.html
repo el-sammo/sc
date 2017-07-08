@@ -8,12 +8,12 @@
 				class="footerLinkRed"
 				style="left: 8px; position: relative;"
 			>
-				Chess Wars!
+				SuperContest
 			</span>
 			<span 
 				class="footerLinkRed pull-right"
 			>
-				Your Destination for Cash Stakes 1 vs 1 and Tournament Chess
+				Your Destination for All the Latest from the WestGate Sports Book's World Famous SuperContest!
 			</span>
 		</div>
 	</div>
@@ -23,7 +23,39 @@
 				class="contentGreyBg"
 				style="top: 8px;"
 			>
-				<ng-include src="'/templates/lobby.html'"></ng-include>
+				<div class="col-md-8">
+				</div>
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col-md-12">
+							<span class="leaderboardHeader">
+								Top 25 (as of Week 16)
+							</span>
+						<div>
+					</div>
+					<br/>
+					<div 
+						class="row"
+						ng-repeat="entry in entriesData"
+					>
+						<div class="col-md-8">
+							<span 
+								class="leaderboardTeamName clickable"
+								ng-click="showEntryDetails(entry)"
+							>
+								{{entry.name}}
+							</span>
+						</div>
+						<div class="col-md-2 col-md-offset-2">
+							<span 
+								class="leaderboardTeamScore clickable"
+								ng-click="showEntryDetails(entry)"
+							>
+								{{entry.total}}
+							</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -19,10 +19,19 @@
 
 		var service = {
 			getOdds: function(selection, week, year) {
-				var url = '/weekodds/byYearWeek/' + selection + '-' + week + '-' + year;
+				var url = '/wodds/byYearWeek/' + selection + '-' + week + '-' + year;
 				return $http.get(url).then(function(res) {
-console.log('res:');
-console.log(res);
+					return res.data;
+				}).catch(function(err) {
+					console.log('GET ' + url + ': ajax failed');
+					console.error(err);
+					return $q.reject(err);
+				});
+			},
+
+			getWeekOdds: function(week, year) {
+				var url = '/wodds/weekYear/' + week + '-' + year;
+				return $http.get(url).then(function(res) {
 					return res.data;
 				}).catch(function(err) {
 					console.log('GET ' + url + ': ajax failed');
@@ -30,7 +39,6 @@ console.log(res);
 					return $q.reject(err);
 				});
 			}
-
 		};
 
 		function mergeIntoEntry(data, replace) {

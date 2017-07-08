@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h3 class="modal-title" id="nav-away-modal-title">
-		<strong>{{entryName}}</strong>
+		<strong>{{entryName}}	- Selections for Week {{selectionsWeek}}</strong>
   </h3>
 </div>
 <div class="row">
@@ -10,32 +10,76 @@
 				<div class="row">
 					<div class="col-md-12">
 						<span class="entriesHeader">
-							Selections for Week {{selectionsWeek}}
 						</span>
 					</div>
 				</div>
 				<div 
 					class="row"
-					ng-repeat="selection in combined track by $index"
+					ng-if="!noSelectionsAvailable"
+					ng-repeat="selection in selectionsOdds track by $index"
+				>
+					<div class="col-md-1">
+						<span 
+							class="entriesData"
+						>
+							{{selection.team}}
+						</span>
+					</div>
+					<div class="col-md-1">
+						<span 
+							class="entriesData pull-left"
+							ng-if="selection.spread > 0"
+						>
+							+{{selection.spread}}
+						</span>
+						<span 
+							class="entriesData pull-left"
+							ng-if="selection.spread < 0"
+						>
+							{{selection.spread}}
+						</span>
+					</div>
+					<div class="col-md-10">
+						{{allTeamsCounts[$index]}} selections out of {{selectionCount}} this week
+					</div>
+				</div>
+				<div 
+					class="row"
+					ng-if="noSelectionsAvailable"
 				>
 					<div class="col-md-12">
 						<span 
 							class="entriesData"
-							ng-if="selection.odds > 0"
 						>
-							{{selection.team}} + {{selection.odds}}
-						</span>
-						<span 
-							class="entriesData"
-							ng-if="selection.odds < 0"
-						>
-							{{selection.team}} {{selection.odds}}
+							No selections
 						</span>
 					</div>
 				</div>
-
+			</div>
+		</div>
+	</div>
+</div>
 <div class="modal-footer" ng-show="!currentlyAvailable">
-  <button type="button" class="btn btn-primary pull-left" ng-click="$close('discard')">
-    <i class="fa fa-reply"></i> &nbsp; Go Back
+  <button 
+		type="button" 
+		class="btn btn-primary pull-left" 
+		ng-click="processWeek(entryName, selectionsWeek - 1, selectionsYear)"
+		ng-show="selectionsWeek > 1"
+	>
+		<i class="fa fa-arrow-left"></i> &nbsp; Week {{selectionsWeek - 1}}
+  </button>
+  <button 
+		type="button" 
+		class="btn btn-primary pull-left" 
+		ng-click="processWeek(entryName, selectionsWeek + 1, selectionsYear)"
+		ng-show="selectionsWeek < 17"
+	>
+		<i class="fa fa-arrow-right"></i> &nbsp; Week {{selectionsWeek + 1}}
   </button>
 </div>
+
+
+
+
+
+

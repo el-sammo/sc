@@ -266,7 +266,7 @@ function insertWeekOdds(odds) {
 
 	odds.forEach(function(odd) {
 print(odd.team);
-		db.weekOdds.insert({
+		db.wodds.insert({
 			team: odd.team,
 			spread: odd.spread,
 			week: 17,

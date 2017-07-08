@@ -25,7 +25,52 @@ module.exports = {
 				return res.send(results);
 			});
 		} else {
-			return res.send(JSON.stringify({success: false, failMsg: 'Invalid seelctionsbyEntryIdYearWeek data'}));
+			return res.send(JSON.stringify({success: false, failMsg: 'Invalid selectionsbyEntryIdYearWeek data'}));
+		}
+	},
+
+	weekCount: function(req, res) {
+		if(req.params.id) {
+			var reqParamsIdPcs = req.params.id.split('-');
+			var week = reqParamsIdPcs[0];
+			var year = reqParamsIdPcs[1];
+
+			Selections.find({week: week, year: year}).then(function(results) {
+				return res.send(results);
+			});
+		} else {
+			return res.send(JSON.stringify({success: false, failMsg: 'Invalid weekCount data'}));
+		}
+	},
+
+	teamWeekCount: function(req, res) {
+		if(req.params.id) {
+			var reqParamsIdPcs = req.params.id.split('-');
+			var team = reqParamsIdPcs[0];
+			var week = reqParamsIdPcs[1];
+			var year = reqParamsIdPcs[2];
+console.log(' ');
+console.log('team: ' + team);
+console.log(' ');
+
+			Selections.find({selections: team, week: week, year: year}).then(function(results) {
+console.log(' ');
+console.log('results:');
+console.log(results);
+console.log(' ');
+				return res.send(results);
+			});
+		} else {
+			return res.send(JSON.stringify({success: false, failMsg: 'Invalid selectionsbyEntryIdYearWeek data'}));
+		}
+	},
+
+	oddsByYearWeek: function(req, res) {
+		var reqParamsIdPcs = req.params.id.split('-');
+		if(reqParamsIdPcs.length > 2) {
+			return getTeamsOdds(req, res);
+		} else {
+			return res.send(JSON.stringify({success: false, failMsg: 'Invalid oddsByEntryIdYearWeek data'}));
 		}
 	},
 
@@ -53,4 +98,52 @@ function dynamicSort(property) {
 		return result * sortOrder;
 	}
 }
+
+function getTeamsOdds(req, res, self) {
+	var reqParamsIdPcs = req.params.id.split('-');
+	var entryId = reqParamsIdPcs[0];
+	var week = reqParamsIdPcs[1];
+	var year = reqParamsIdPcs[2];
+
+	return Selections.find({entryId: entryId, week: week, year: year}).then(function(results) {
+		return WoddsService.getTeamsOdds(results[0]).then(function(teamsOddsData) {
+			res.send(JSON.stringify(teamsOddsData));
+		});
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

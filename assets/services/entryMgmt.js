@@ -30,7 +30,6 @@
 			},
 
 			getTopEntries: function() {
-console.log('getTopEntries() called');
 				var url = '/entries/getTopEntries/';
 				return $http.get(url).then(function(leaders) {
 					return leaders.data;

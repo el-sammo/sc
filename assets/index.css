@@ -37,6 +37,22 @@ body {
 	height: 70px;
 }
 
+.clickable {
+	cursor: pointer;
+}
+
+.leaderboardTeamName {
+	font-size: 16px;
+	font-weight: 600;
+	color: #254684;
+}
+
+.leaderboardTeamScore {
+	font-size: 16px;
+	font-weight: 600;
+	color: #254684;
+}
+
 input[type=checkbox] {
 	margin-left: 1px;
 	margin-right: 1px;
@@ -666,7 +682,7 @@ td {
 .contentGreyBg {
 	left: 1%;
 	width: 98%;
-	min-height: 80px;
+	min-height: 580px;
 	margin-left: 4px;
 	padding-bottom: 12px;
 	border: 1px solid black;

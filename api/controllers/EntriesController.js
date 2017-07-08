@@ -23,12 +23,8 @@ module.exports = {
 	},
 
 	getTopEntries: function(req, res) {
-		Entries.find().sort({total: 1, name: 1}).limit(25).then(function(results) {
-console.log(' ');
-console.log('getTopEntries results:');
-console.log(results);
-console.log(' ');
-			return results;
+		Entries.find({year: 2016}).sort({total: -1, name: 1}).limit(25).then(function(results) {
+			return res.send(results);
 		});
 	},
 	
