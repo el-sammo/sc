@@ -38,6 +38,12 @@
 						>
 							{{selection.spread}}
 						</span>
+						<span 
+							class="entriesData pull-left"
+							ng-if="!selection.spread > 0 && !selection.spread < 0"
+						>
+							PICK
+						</span>
 					</div>
 					<div class="col-md-10">
 						{{allTeamsCounts[$index]}} selections out of {{selectionCount}} this week

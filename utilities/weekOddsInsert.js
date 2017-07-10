@@ -1,38 +1,39 @@
 // First, eliminate all asterisks (*)
-// :19,34s/*//
-// Second, eliminate leading numbers
-// :19,34s/[0-9]\s\|[1-9][0-9]\s//g
-// Third, eliminate excess white space while adding commas and apostrophes
-// :19,34s/^/'/
-// :19,34s/\s/','/g
-// :19,34s/,'\([0-9]\)/,\1/g
-// Fourth, fix 49ers (if it exists)
-// :19,34s/,49ERS/,'49ERS/
-// Now, wrap the data in a function call
-// :19,34s/^/insertWeekOdds(/
-// :19,34s/$/,week,year);/
-// Last, update the week/year variables
+// :21,36s/*//
+// Second, swap PK for 0 (if it exists)
+// :21,36s/PK/0/
+// Third, eliminate leading numbers
+// :21,36s/[0-9]\s\|[1-9][0-9]\s//g
+// Fourth, eliminate excess white space while adding commas and apostrophes
+// :21,36s/^/'/
+// :21,36s/\s/','/g
+// :21,36s/,'\([0-9]\)/,\1/g
+// Fifth, fix 49ers (if it exists)
+// :21,36s/,49ERS/,'49ERS/
+// Sixth, wrap the data in a function call
+// :21,36s/^/insertWeekOdds(/
+// :21,36s/$/,week,year);/
+// Seventh, update the week/year variables
 
-var week = 14;
+var week = 1;
 var year = 2016;
 
-insertWeekOdds('CHIEFS','RAIDERS',3,week,year);
-insertWeekOdds('TITANS','BRONCOS',1,week,year);
-insertWeekOdds('PANTHERS','CHARGERS',1.5,week,year);
-insertWeekOdds('COLTS','TEXANS',6,week,year);
-insertWeekOdds('BENGALS','BROWNS',5.5,week,year);
-insertWeekOdds('STEELERS','BILLS',1.5,week,year);
-insertWeekOdds('DOLPHINS','CARDINALS',1,week,year);
-insertWeekOdds('LIONS','BEARS',7.5,week,year);
-insertWeekOdds('VIKINGS','JAGUARS',3,week,year);
-insertWeekOdds('BUCCANEERS','SAINTS',2.5,week,year);
-insertWeekOdds('REDSKINS','EAGLES',1,week,year);
-insertWeekOdds('49ERS','JETS',2.5,week,year);
-insertWeekOdds('SEAHAWKS','PACKERS',2.5,week,year);
-insertWeekOdds('FALCONS','RAMS',6,week,year);
-insertWeekOdds('COWBOYS','GIANTS',3,week,year);
-insertWeekOdds('PATRIOTS','RAVENS',7,week,year);
-
+insertWeekOdds('PANTHERS','BRONCOS',3,week,year);
+insertWeekOdds('FALCONS','BUCCANEERS',2.5,week,year);
+insertWeekOdds('VIKINGS','TITANS',1.5,week,year);
+insertWeekOdds('EAGLES','BROWNS',4,week,year);
+insertWeekOdds('BENGALS','JETS',2.5,week,year);
+insertWeekOdds('SAINTS','RAIDERS',1.5,week,year);
+insertWeekOdds('CHIEFS','CHARGERS',6.5,week,year);
+insertWeekOdds('RAVENS','BILLS',3,week,year);
+insertWeekOdds('TEXANS','BEARS',6,week,year);
+insertWeekOdds('PACKERS','JAGUARS',5.5,week,year);
+insertWeekOdds('SEAHAWKS','DOLPHINS',10.5,week,year);
+insertWeekOdds('GIANTS','COWBOYS',1.5,week,year);
+insertWeekOdds('COLTS','LIONS',3.5,week,year);
+insertWeekOdds('CARDINALS','PATRIOTS',6,week,year);
+insertWeekOdds('STEELERS','REDSKINS',3,week,year);
+insertWeekOdds('RAMS','49ERS',2.5,week,year);
 
 function insertWeekOdds(favorite, dog, line, week, year) {
 	db = new Mongo().getDB('supercontest');
